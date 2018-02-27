@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Critic Bias in Video Game Reviews
-date: 2018-02-24 02:58:30 -0500
+date: 2018-02-24 02:58:30 -0400
 categories:
   - data
 ---
@@ -247,7 +247,7 @@ plt.show()
 ```
 
 
-![png]({{ "/assets/output_27_0.png" | absolute_url }})
+![png]({{ "/assets/2018/02/24/output_27_0.png" | absolute_url }})
 
 
 Hmm, looks almost normal. Let's check.
@@ -318,7 +318,7 @@ plt.show()
 ```
 
 
-![png]({{ "/assets/output_36_0.png" | absolute_url }})
+![png]({{ "/assets/2018/02/24/output_36_0.png" | absolute_url }})
 
 
 It certainly doesn't look like there's much correlation. That makes sense though. On smaller timescales, there can be a ton of variation. We should instead look at averages over time. A rolling average is what we're looking for.
@@ -364,7 +364,7 @@ plt.show()
 ```
 
 
-![png]({{ "/assets/output_42_0.png" | absolute_url }})
+![png]({{ "/assets/2018/02/24/output_42_0.png" | absolute_url }})
 
 
 There is a fairly obvious trend from about 2005 to the latest data. Remember, a positive discrepancy means that the metascore is higher than the average user score. Stated differently, the 'critics' thought the game was better than it was. 
