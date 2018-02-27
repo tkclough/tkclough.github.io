@@ -342,7 +342,7 @@ pearsonr(times, rolling)
 
 
 
-That is very promising! *edit: u\girth_ confirmed my suspicion that this isn't a valid
+That is very promising! *edit: u\Girth__ confirmed my suspicion that this isn't a valid
 conclusion to draw from a rolling mean. I'll write more about it later.*
 
 
