@@ -4,6 +4,7 @@ title: Critic Bias in Video Game Reviews
 date: 2018-02-24 02:58:30 -0400
 categories:
   - data
+mathjax: true
 ---
 # A Comparison of Metascores and User Reviews
 I'm interested in the relationship between professional and amateur opinions of games, so I thought metacritic would be a good place to start. Let's get scraping.

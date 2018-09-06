@@ -4,6 +4,7 @@ title: "Increasingly Verbose: Gradient Descent"
 date: 2018-09-05 01:00:00 -0400
 categories:
   - tutorial
+mathjax: true
 ---
 A neural network consists of two types of components. There are the hyperparameters, which we humans concern ourselves the 
 most with. Then, there are the parameters, which we task the computer with figuring out itself. What does that mean,
