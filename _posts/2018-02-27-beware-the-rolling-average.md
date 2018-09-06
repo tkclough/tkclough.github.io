@@ -4,7 +4,7 @@ title: Beware the Rolling Average
 date: 2018-02-27 18:01:15 -0400
 categories:
   - errata
-mathjax: true
+math: true
 ---
 > With four paremeters I can fit an elephant, and with five I can make him wiggle his trunk.
 >
