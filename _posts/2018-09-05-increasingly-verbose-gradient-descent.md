@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Increasingly Verbose: Gradient Descent"
+date: 2018-09-05 01:00:00 -0400
 categories:
   - tutorial
 ---
