@@ -1,6 +1,6 @@
 ---
 layout: post
-title: A Closer Look at Linear Regression
+title: "A Closer Look at Linear Regression"
 date: 2019-01-31 20:02:00 -0400
 categories:
   - algorithms
@@ -153,13 +153,29 @@ The range of $X$ forms a subspace of $\mathbb{R}^n$, and $y \in \mathbb{R}^n$.
 That means that we can perform a projection of $y$ onto $\text{range} X$:
 
 $$ \begin{align*}
-    P_{\text{range} X} y &= \underset{u \in \text{range} X}{\operatorname{argmin}} || y - u ||_2\\
-    &= \underset{\beta \in \mathbb{R}^d }{\operatorname{argmin}} ||y - X\beta||_2
+    P_{\text{range} X} y &= \underset{u \in \text{range} X}{\operatorname{min}} || y - u ||_2\\
+    &= \underset{\beta \in \mathbb{R}^d }{\operatorname{min}} ||y - X\beta||_2
 \end{align*} $$
 
-This is exactly the form that ordinary least squares is looking for. Let that
-sink in: approximating a target function on $n$ data points is the same thing
-as projecting the $n$ dimensional target vector onto the space of combinations
-of the feature columns. We are conceptually minimizing a distance between vectors.
-I think this perspective of linear regression is quite satisfying, more so than
-just doing algebra on matrices.
+The optimal value, $\beta_{OLS} = \underset{\beta \in \mathbb{R}^d}{\operatorname{argmin}}|| X\beta - y ||$ is then
+related to $P_{\text{range} X}y$ by the following relation:
+
+$$ X\beta_{OLS} = \hat{y} $$
+
+We would like to take the inverse of $X$ to compute $\beta$, but as 
+$X \in \mathbb{R}^{n\times d}$, we must instead take the left psuedoinverse,
+$X^+$ (this gives us $X^+ X = I$, but not $X X^+ = I$):
+
+$$\beta_{OLS} = X^+ \hat{y} = X^+ P_{\text{range} X} y$$
+
+Let this sink in: approximating a target function on $n$ data points is the same 
+thing as projecting the $n$ dimensional target vector onto the space of combinations
+of the feature columns. We are conceptually minimizing a distance between two
+vectors. This also gives us an interesting perspective of a 
+function from target values to an optimal linear model, given the data $X$.
+
+$$f_X : \mathbb{R}^n \rightarrow \mathbb{R}^d$$
+
+We have brought the view of ordinary least squares from an optimization problem
+to a geometric interpretation. These intuitions are often much more valuable
+than knowing the algebra that goes into solving such a problem.
