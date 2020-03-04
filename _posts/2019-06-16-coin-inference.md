@@ -33,7 +33,7 @@ can only take on the values 0, 0.25, 0.5, 0.75, or 1, and it could take any
 value with equal probability (each value takes on a probability of 1/5). 
 We can visualize this graphically:
 
-![discrete_uniform_prior.png]({{ "/assets/2019/02/17/discrete_uniform_prior.png" | absolute_url }} )
+![discrete_uniform_prior.png]({{ "/assets/2019/06/17/discrete_uniform_prior.png" | absolute_url }} )
 
 The workhorse of probabilistic inference is Bayes' theorem; for us, it will take
 the following form:
@@ -86,7 +86,7 @@ $$
 \end{align*}
 $$
 
-![discrete_uniform_posterior1.png]({{ "/assets/2019/02/17/discrete_uniform_posterior1.png" | absolute_url }}  )
+![discrete_uniform_posterior1.png]({{ "/assets/2019/06/17/discrete_uniform_posterior1.png" | absolute_url }}  )
 
 These results make sense: we saw a tail, so it is now impossible that the 
 probability of getting a head is 100%. Similarly, the probabilities for lower
@@ -95,14 +95,14 @@ values of $\theta$ increased. Now, the most likely value is 0.
 We can iterate this process for the entire dataset. After the ten flips, it 
 looks like this:
 
-![discrete_uniform_posterior_all.png]({{ "/assets/2019/02/17/discrete_uniform_posterior_all.png" | absolute_url }})
+![discrete_uniform_posterior_all.png]({{ "/assets/2019/06/17/discrete_uniform_posterior_all.png" | absolute_url }})
 
 Note that this was a particularly lucky sequence of coin tosses - exactly half
 of the flips were heads. An unlucky sequence of tosses (one that seems to 
 indicate a lower value of $\theta$) is entirely possible. Suppose we got instead
 10 tails in a row. That would yield the following posterior:
 
-![discrete_uniform_posterior_10tail.png]({{ "/assets/2019/02/17/discrete_uniform_posterior_10tail.png" | absolute_url }})
+![discrete_uniform_posterior_10tail.png]({{ "/assets/2019/06/17/discrete_uniform_posterior_10tail.png" | absolute_url }})
 
 This indicates near-certainty that the coin is two-sided tails. Still, it does
 not discount the possibility that the coin could still be fair. After all, the
