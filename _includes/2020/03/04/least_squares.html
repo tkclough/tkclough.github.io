@@ -1,0 +1,34 @@
+<style>
+    .cartesian {
+        transform: scaleY(-1);
+        border: 1px solid black;
+    }
+
+    circle {
+        fill: gray;
+    }
+
+    line {
+        stroke: black;
+        stroke-width: 2;
+    }
+</style>
+
+<div>
+    <label for="nSlider">$n$</label>
+    <input type="range" min="10" max="100" value="10" class="slider" id="nSlider">
+    <label id="nLabel"></label>
+</div>
+<div>
+    <label for="lambdaSlider">$\lambda$</label>
+    <input type="range" min="0" max="10" value="1" class="slider" id="lambdaSlider">
+    <label id="lambdaLabel"></label>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<div>
+    <svg class="cartesian"></svg>
+</div>
+<div>
+    <input type="button" id="btnFit" value="Fit">
+</div>
+<script src="/assets/2020/03/04/main.js"></script>

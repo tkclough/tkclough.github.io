@@ -1,1 +1,4 @@
 _drafts/**
+.sass-cache/**
+_site/**
+Gemfile.lock
