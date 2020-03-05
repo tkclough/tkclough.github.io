@@ -4,7 +4,6 @@ title: About
 permalink: /about/
 ---
 
-My name is Tim Clough. I am a student at Rensselaer Polytechnic Institute studying computer science.
-
-With this blog, I hope to kill three birds with one stone: practice writing python to analyze
-data, improve my writing abilities, and create a portfolio of my work.
+Howdy, I'm Tim. I'm a student at Rensselaer Polytechnic Institute studying
+computer science. I'm interested in machine learning, Bayesian statistics, and
+functional programming. This is where I dump stuff I've picked up.
