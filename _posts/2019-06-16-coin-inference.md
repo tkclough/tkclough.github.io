@@ -163,7 +163,7 @@ What's really cool about this switch to continuous inference is that
 _it just works_ (TM). Given some data $D$ and a prior $p(x)$ over the data,
 the posteror distribution is defined exactly as it was before:
 
-$$p(x|D) = \frac{p(D|x)}{p(x)}{p(D)$$
+$$p(x|D) = \frac{p(D|x)p(x)}{p(D)}$$
 
 One caveat: the denominator here is an integral that can be really painful to 
 compute for any practical problem - have you ever done a double integral? A 
