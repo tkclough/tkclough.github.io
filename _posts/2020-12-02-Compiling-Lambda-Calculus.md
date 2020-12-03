@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Decoding Lambda Calculus Terms"
+title: "Compiling Lambda Calculus Programs"
 date: 2020-11-26 18:06:00 -0400
 math: true
 ---
