@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Compiling Lambda Calculus Programs"
-date: 2020-11-26 18:06:00 -0400
+date: 2020-12-02 22:34:00 -0400
 math: true
 ---
 I've been working on a lambda calculus interpreter for a while. One of the many reasons it is unpleasant to program in lambda calculus is that every time you want to use a function, you have to redefine it in place. The simple extension I wanted to add was declarations, so we can, for example, say $T = \lambda t f.t$ once, and then refer to $\lambda t f.t$ by the identifier $T$. For notational convenience, let $\langle Ident\rangle$ denote the binding corresponding to $Ident$, and $Ident_C$ denote the compiled version of $Ident$. Then, suppose we have another definition $or = \lambda p ~q.p ~T ~q$. This definition can be expanded by substituting $T$ in the definition of $or$, i.e. $or' = (\lambda p ~q.p ~T ~q)[T/\lambda t ~f.t]$. The obvious way to express that we want to perform this substitution is with an abstraction:
@@ -109,9 +109,11 @@ $$\begin{align}
 
 From a dependency standpoint, we have transformed the graph from this (ignoring 
 non-recursive dependencies):
+
 ![Cyclic dependency graph](/assets/2020/12/02/even_odd_cyclic.png)
 
 to this:
+
 ![Acyclic dependency graph](/assets/2020/12/02/even_odd_acyclic.png)
 
 Notice that we have transformed the strongly connected component into an
