@@ -136,38 +136,39 @@ is a fix point combinator in Haskell):
 import Data.Function (fix)
 
 data Fun = Odd | Even deriving (Eq)
+data Description = Desc { action :: Fun, input :: Int } deriving (Eq)
+type Result = Either Bool Description
 
-even', odd' :: Int -> Either Bool (Int, Fun)
+even', odd' :: Int -> Result
 even' n = if n == 0 
             then Left True 
-            else Right (n - 1, Odd)
+            else Right (Desc Odd (n - 1))
 odd' n = if n == 0
             then Left False
-            else Right (n - 1, Even)
+            else Right (Desc Even (n - 1))
 
-dispatch :: Int -> Fun -> Either Bool (Int, Fun)
-dispatch n f = case f of
+dispatch :: Description -> Result
+dispatch (Desc f n) = case f of
     Odd -> odd' n
     Even -> even' n
 
-bundle :: Either Bool (Int, Fun) -> Bool
+bundle :: Result -> Bool
 bundle = fix (\bundle' result -> case result of
                 Left p -> p
-                Right (n, name) -> 
-                    bundle' (dispatch n name))
+                Right desc -> bundle' desc)
 
 even, odd :: Int -> Bool
-even n = bundle (Right (n, Even))
-odd n = bundle (Right (n, Odd))
+even n = bundle (Right (Desc Even n))
+odd n = bundle (Right (Desc Odd n))
 ```
 
 This is, of course, an awful way to compute parity of a number. Regardless,
 I think it's interesting that it's possible to factor out even mutual recursion.
 Here's a way to interpret what's going on here: $\texttt{even'}$ and $\texttt{odd'}$
-Compute either a final value or a *description* of what computation should
+compute either a final value or a *description* of what computation should
 happen next, without actually performing that computation. Given this description,
 we can get an actual computation, through the $\texttt{dispatch}$ function. However,
-these two functions still don't perform any recursion. We need to chain these
+these two functions still don't perform the whole computation. We need to chain these
 computations together recursively. The $\texttt{bundle}$ function takes a
 result and decides whether to terminate or recurse based on its value. Finally,
 to get the original interface of the even and odd functions, we feed a
