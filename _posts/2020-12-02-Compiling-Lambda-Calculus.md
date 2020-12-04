@@ -119,5 +119,56 @@ to this:
 Notice that we have transformed the strongly connected component into an
 acyclic subgraph. We can perform this step on each strongly connected component
 and transform the original cyclic graph $G$ into an acyclic equivalent $G'$.
+Specifically, for each strongly connected component with bindings $\tau_1,\ldots,\tau_n$,
+collect acyclic equivalent with terms $\tau_i$, $\tau'_i$, $s_i$, $B$, and $\beta$.
+We can regard the $\tau_i$ as the recursive interface to the function, while
+the $\tau'_i$ are the implementations of the non-recursive *kernel* of the
+original cyclic implementation. As such, the dependencies of the cyclic $\tau_i$
+are now dependencies of the $\tau'_i$, while the (non-cyclic) *dependees* of the cyclic
+$\tau_i$ (that is, nodes $v$ such that there is an edge $(v,\tau_i)$ in $G$) 
+become dependees of the acyclic $\tau_i$.
 Because $G'$ is a DAG, we can obtain a topological sort, so we can simply apply 
 the previous algorithm to $G'$ to obtain our compiled terms.
+
+We can define $odd$ and $even$ explicitly in Haskell (note that $\texttt{fix}$ 
+is a fix point combinator in Haskell):
+```haskell
+import Data.Function (fix)
+
+data Fun = Odd | Even deriving (Eq)
+
+even', odd' :: Int -> Either Bool (Int, Fun)
+even' n = if n == 0 
+            then Left True 
+            else Right (n - 1, Odd)
+odd' n = if n == 0
+            then Left False
+            else Right (n - 1, Even)
+
+dispatch :: Int -> Fun -> Either Bool (Int, Fun)
+dispatch n f = case f of
+    Odd -> odd' n
+    Even -> even' n
+
+bundle :: Either Bool (Int, Fun) -> Bool
+bundle = fix (\bundle' result -> case result of
+                Left p -> p
+                Right (n, name) -> 
+                    bundle' (dispatch n name))
+
+even, odd :: Int -> Bool
+even n = bundle (Right (n, Even))
+odd n = bundle (Right (n, Odd))
+```
+
+This is, of course, an awful way to compute parity of a number. Regardless,
+I think it's interesting that it's possible to factor out even mutual recursion.
+Here's a way to interpret what's going on here: $\texttt{even'}$ and $\texttt{odd'}$
+Compute either a final value or a *description* of what computation should
+happen next, without actually performing that computation. Given this description,
+we can get an actual computation, through the $\texttt{dispatch}$ function. However,
+these two functions still don't perform any recursion. We need to chain these
+computations together recursively. The $\texttt{bundle}$ function takes a
+result and decides whether to terminate or recurse based on its value. Finally,
+to get the original interface of the even and odd functions, we feed a
+description of the initial computations we want to perform into $\texttt{bundle}$.
